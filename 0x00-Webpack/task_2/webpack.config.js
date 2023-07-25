@@ -1,30 +1,45 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'production',
   entry: './js/dashboard_main.js',
   output: {
-    path:path.resolve(__dirname, 'public'),
-    filename: 'bundle.js'
-  },
-  performance: {
-    maxAssetSize: 1000000,
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'public'),
+    clean: true,
   },
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: [
-          'style-loader',
-          'css-loader'
-        ]
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        test: /\.(png|jpe?g|gif)$/i,
         use: [
-          {loader: 'image-webpack-loader'} //["file-loader"]
-        ]
-      }
-    ]
-  }
-}
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              name: '[name].[ext]',
+              outputPath: 'images',
+            },
+          },
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              disable: false, // Change to false for image optimization
+            },
+          },
+        ],
+      },
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+  ],
+};
+
