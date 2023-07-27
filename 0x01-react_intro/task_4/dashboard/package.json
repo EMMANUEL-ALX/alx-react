@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "homepage": "http://lope1999.github.io/alx-react",
+=======
+  "homepage": "http://EMMANUEL-ALX.github.io/alx-react",
+>>>>>>> c2946f84f7c30118266814b2fccc013854597aae
   "name": "dashboard",
   "version": "0.1.0",
   "private": true,
