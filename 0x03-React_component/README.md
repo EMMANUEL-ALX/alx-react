@@ -1,1 +1,1 @@
-<h2> 0x04-React_component </h2>
+## 0x03. React component
